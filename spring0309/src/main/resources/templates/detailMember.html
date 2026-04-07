@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원 상세 정보</title>
+</head>
+<body>
+	<div style="margin-left: 20px;">
+		<h2>회원 상세 정보</h2>
+		<form th:action="@{/member/update}" method="post">
+			<div>아이디: <input type="text" name="id" th:value="${member.id}"  readonly></div><br>
+			<div>이름: <input type="text" name="name" th:value="${member.name}"></div><br>
+			<div>성별: <input type="text" name="gender" th:value="${member.gender}"></div><br>
+			<div>생년월일: <input type="text" name="birth" th:value="${member.birth}"></div><br>
+			<div>이메일: <input type="email" name="mail" th:value="${member.mail}"></div><br>
+			<div>연락처: <input type="tel" name="phone" th:value="${member.phone}"></div><br>
+			<div>주소: <input type="text" name="address" th:value="${member.address}"></div><br>
+			<div>가입일: <input type="text" name="registDay" th:value="${member.registDay}"></div><br>
+			<button type="submit">정보 수정 저장</button>
+		</form>
+		<hr>
+		<form th:action="@{/member/delete}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?')">
+			<input type="hidden" name="id" th:value="${member.id}">
+			<button type="submit">회원 강제 탈퇴</button>
+		</form>
+		<br>
+		<a th:href="@{/member/list}">목록으로 돌아가기</a>
+	</div>
+</body>
+</html>

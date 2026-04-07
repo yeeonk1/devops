@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원 목록</title>
+</head>
+<body>
+<h2>회원 관리 시스템</h2>
+<a th:href="@{/member/writeui}">[신규 회원 등록]</a>
+<table border="1">
+	<thead>
+		<tr>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>성별</th>
+			<th>이메일</th>
+			<th>가입일</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr th:each="member : ${list}">
+			<td>
+				<a th:href="@{/member/detail(id=${member.id})}" th:text="${member.id}"></a>
+			</td>
+			<td th:text="${member.name}"></td>
+			<td th:text="${member.gender}"></td>
+			<td th:text="${member.mail}"></td>
+			<td th:text="${member.registDay}"></td>
+		</tr>
+		<tr th:if="${#lists.isEmpty(list)}">
+			<td colspan="5">회원 정보가 없습니다.</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
